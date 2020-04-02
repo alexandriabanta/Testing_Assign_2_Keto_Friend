@@ -25,8 +25,6 @@ public class Nutrition {
         return name;
     }
 
-
-
     public int id;
     public String number;
     public String name;

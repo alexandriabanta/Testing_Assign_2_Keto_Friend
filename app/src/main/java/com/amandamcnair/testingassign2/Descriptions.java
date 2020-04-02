@@ -57,7 +57,7 @@ public class Descriptions extends AppCompatActivity {
          */
 
 
-        findViewById(R.id.descriptions_button).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.goToLogButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doDownload();

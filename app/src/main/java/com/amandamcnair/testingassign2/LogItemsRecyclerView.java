@@ -44,11 +44,12 @@ import javax.net.ssl.HttpsURLConnection;
 public class LogItemsRecyclerView extends AppCompatActivity {
 
     private  KetoTracker kt = new KetoTracker();
+    private double netCarbs = 0.0;
     ArrayList<Food> foods = new ArrayList<Food>();
     //ArrayList<Food> foods;
     FoodAdapter foodAdapter;
     private RecyclerView recyclerView;
-    String foodSearchName = MainActivity.getFoodSeachFromClass();
+    //String foodSearchName = MainActivity.getFoodSeachFromClass();
 
     private static int ID;
     public static int getIDFromClass() {
@@ -90,7 +91,7 @@ public class LogItemsRecyclerView extends AppCompatActivity {
 
         final TextView tv = findViewById(R.id.dailyNetCarbsTextView);
 
-        double netCarbs = 0.0;
+        Log.i("foods.size(): ", "" + foods.size());
         for (int i = 0; i < foods.size(); i++) {
             netCarbs += foods.get(i).carbs;
             Log.i("netcarbs: ","" + netCarbs);
@@ -115,7 +116,7 @@ public class LogItemsRecyclerView extends AppCompatActivity {
                         kt.clearData();
                         foods.clear();
 
-                        saveKetoTrackerToFile(kt);
+                        //saveKetoTrackerToFile(kt);
 
                         foodAdapter.notifyDataSetChanged();
                         tv.setText("Net Carbs: 0.0");
@@ -161,9 +162,11 @@ public class LogItemsRecyclerView extends AppCompatActivity {
 
             restoreKetoTrackerFromFile(kt);
 
+            Log.i("kt.getNumOFoods(): ", "" + kt.getNumOfFoods());
             for (int i = 0; i < kt.getNumOfFoods(); i++) {
                 //put keto tracker info into foods
                 foods.add(kt.getFoodAt(i));
+                Log.i("foods.at(i): ", "" + foods.get(i).getDescription());
             }
 
             //saveKetoTrackerToFile(kt);
@@ -258,6 +261,8 @@ public class LogItemsRecyclerView extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int choice) {
                     //have a toast message
+
+
                     //remove from list
                     foods.remove(index);
                     foodAdapter.notifyItemRemoved(index);
@@ -265,8 +270,8 @@ public class LogItemsRecyclerView extends AppCompatActivity {
                     kt.removeFoodAtIndex(index);
 
                     //update file
-                    File save = new File(getFilesDir(), "logSave.txt");
-                    save.delete();
+                    //File save = new File(getFilesDir(), "logSave.txt");
+                    //save.delete();
 
                     saveKetoTrackerToFile(kt);
                 }
@@ -289,9 +294,10 @@ public class LogItemsRecyclerView extends AppCompatActivity {
             BufferedWriter BW = new BufferedWriter(OSW);
             PrintWriter PW = new PrintWriter(BW);
 
-            //PW.println((int)ketoTracker.getNumOfFoods());
-            Log.i("Save: ","contents of file;");
+
+            Log.i("ketoTracker.getNumOfFoods(): ","" + ketoTracker.getNumOfFoods());
             for (int i = 0; i < ketoTracker.getNumOfFoods(); i++) {
+                Log.i("Food #" + i + ": ","saving food " + ketoTracker.getFoodNameAt(i));
                 //1) int id
                 PW.println(ketoTracker.getFoodIdAt(i));
                 Log.i("ketoTracker.getFoodIdAt(" + "i):",""+ ketoTracker.getFoodIdAt(i));

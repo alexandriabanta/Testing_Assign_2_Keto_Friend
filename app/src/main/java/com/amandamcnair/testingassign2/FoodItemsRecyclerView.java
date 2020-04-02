@@ -157,15 +157,13 @@ public class FoodItemsRecyclerView extends AppCompatActivity {
                     String dataType = food.getString("dataType");
                     //String foodCode = food.getString("foodCode");
 
-                    /*
+
                     String brandowner = "";
                     if (dataType.equals("Branded")) {
-                        brandowner = reader.getString("brandOwner");
+                        brandowner = food.getString("brandOwner");
                     }
 
-                     */
-
-                    foods.add(new Food(id, descript, dataType, ""));
+                    foods.add(new Food(id, descript, dataType , brandowner));
                     //Log.i("Food Object", "" + foods.add(new Food(id, descript, dataType)));
                     Log.i("Food Object", "" + foods.get(i).getId());
                     taglist.add(descript);
@@ -277,7 +275,7 @@ public class FoodItemsRecyclerView extends AppCompatActivity {
         public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
 
             //holder.view.setText(foods.get(position).getDescription());
-            holder.view.setText(foods.get(position).getDescription() + "");
+            holder.view.setText(foods.get(position).getDescription() + "\n" + foods.get(position).getBrandOwner());
         }
 
         @Override
@@ -288,7 +286,6 @@ public class FoodItemsRecyclerView extends AppCompatActivity {
             else {
                 return 0;
             }
-            //return 5;
         }
 
         @Override
@@ -297,7 +294,7 @@ public class FoodItemsRecyclerView extends AppCompatActivity {
 
             String brandNameString = "";
 
-            //if (foods.get(position).getDataType().equals("Branded")) { brandNameString = "by " + foods.get(position).getBrandOwner(); }
+            if (foods.get(position).getDataType().equals("Branded")) { brandNameString = "by " + foods.get(position).getBrandOwner(); }
 
             AlertDialog.Builder builder = new AlertDialog.Builder(FoodItemsRecyclerView.this);
             builder.setMessage(Html.fromHtml("<html>" +

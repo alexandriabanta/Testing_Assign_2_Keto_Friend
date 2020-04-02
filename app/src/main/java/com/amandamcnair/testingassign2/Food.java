@@ -6,9 +6,10 @@ public class Food {
     public String description;
     public String dataType;
     public String foodCode;
-    public String brandOwner = "";
+    public String brandOwner;
 
     public Food() {}
+
 
     public Food(int id, String description, String dataType, String brandOwner) {
         this.id = id;

@@ -55,7 +55,7 @@ public class KetoTracker {
         public void clearData() {
             dailyFoodList.clear();
             numOfFoods = 0;
-            dailyCarbs = 0; dailyFiber = 0; dailyNetCarbs = 0;
+            dailyCarbs = 0.0; dailyFiber = 0.0; dailyNetCarbs = 0.0;
         }
 
         public Food getFoodAt(int index) {
