@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,7 +39,6 @@ public class GetNutritionInfo extends AppCompatActivity {
     //private RecyclerView.Adapter adapter;
 
     private  KetoTracker ketoTracker = new KetoTracker();
-
     //ArrayList<Nutrition> nutritionAR = new ArrayList<Nutrition>();
     int id = FoodItemsRecyclerView.getIDFromClass();
 
@@ -52,7 +52,11 @@ public class GetNutritionInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), LogItemsRecyclerView.class);
+                boolean itemAddedBool = false;
+                intent.putExtra("itemAddedBool",itemAddedBool);
                 startActivity(intent);
+
+                ketoTracker.clearData();
             }
         });
 
@@ -198,7 +202,6 @@ public class GetNutritionInfo extends AppCompatActivity {
                         textBuilder.append("This listing does not have significant carbohydrate" +
                                 " content. Please go back and choose a similar listing. ");
                     } else {
-
                         netCarbs = carbsPerServing - fiberPerServing;
 
                         if (netCarbs >= 0) {
@@ -224,7 +227,6 @@ public class GetNutritionInfo extends AppCompatActivity {
                         }
                     }
                 }
-
 
                 tagString = textBuilder.toString();
 
@@ -270,7 +272,6 @@ public class GetNutritionInfo extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     // add this item to tracker
-
                     ketoTracker.addFood(foodItem);
 
                     //File save = new File(getFilesDir(), "logSave.txt");
@@ -280,11 +281,13 @@ public class GetNutritionInfo extends AppCompatActivity {
 
                     //writeLog();
                     Intent intent = new Intent(getApplicationContext(), LogItemsRecyclerView.class);
+                    boolean itemAddedBool = true;
+                    intent.putExtra("itemAddedBool",itemAddedBool);
                     startActivity(intent);
+
+                    ketoTracker.clearData();
                 }
             });
-
-
 
             dataDownload = null;
         }
@@ -410,6 +413,12 @@ public class GetNutritionInfo extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void itemAddedToast(int position) {
+        String itemRemoved = ketoTracker.getFoodNameAt(position);
+        Toast.makeText(getApplicationContext(),
+                itemRemoved+ " added successfully.", Toast.LENGTH_LONG).show();
     }
 
     public void exitTracker() {

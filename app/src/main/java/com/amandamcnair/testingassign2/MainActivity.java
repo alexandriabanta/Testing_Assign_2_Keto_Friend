@@ -46,17 +46,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.goToLogButton).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.viewLogButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDescriptions();
+                OpenLog();
             }
         });
 
     }
 
-    private void getDescriptions() {
-        Intent intent = new Intent(getApplicationContext(), Descriptions.class);
+    private void OpenLog() {
+        Intent intent = new Intent(getApplicationContext(), LogItemsRecyclerView.class);
         startActivity(intent);
     }
 

@@ -16,10 +16,11 @@ public class KetoTracker {
         private double dailyCarbs = 0.0,
                        dailyFiber = 0.0,
                        dailyNetCarbs = 0.0;
+        private String dataType = "";
 
         KetoTracker() { }
 
-        public double getNumOfFoods() { return numOfFoods;}
+        public int getNumOfFoods() { return numOfFoods;}
         public double getDailyNetCarbs() { return dailyNetCarbs; }
         public double getDailyCarbs() { return dailyCarbs; }
         public double getDailyFiber() { return dailyFiber; }
@@ -57,6 +58,8 @@ public class KetoTracker {
             numOfFoods = 0;
             dailyCarbs = 0.0; dailyFiber = 0.0; dailyNetCarbs = 0.0;
         }
+
+        public void setDataType(String dataType) { this.dataType = dataType;}
 
         public Food getFoodAt(int index) {
             return dailyFoodList.get(index);

@@ -8,32 +8,15 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/goToLogButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Descriptions"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/recyclerView_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="103dp"
+        android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginTop="32dp"
         android:text="@android:string/search_go"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/food_search"
+        app:layout_constraintTop_toBottomOf="@+id/licensing" />
 
     <TextView
         android:id="@+id/licensing"
@@ -43,23 +26,35 @@
         android:text="Search for a food item! This application will tell you if a food is compatible with the standard ketogenic diet (SKD). \n\n U.S. Department of Agriculture, Agricultural Research Service. FoodData Central, 2019. fdc.nal.usda.gov."
         android:textColor="#fff"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.156" />
+        app:layout_constraintVertical_bias="0.13999999" />
 
     <EditText
         android:id="@+id/food_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Enter food"
         android:inputType="textPersonName"
         android:textColor="#fff"
         android:textColorHint="#969595"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.27"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/licensing" />
+
+    <Button
+        android:id="@+id/viewLogButton"
+        android:layout_width="203dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="16dp"
+        android:text="View Log"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
